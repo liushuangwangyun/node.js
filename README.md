@@ -60,5 +60,63 @@ node.js程序由事件循环开始到事件循环结束，始终都在事件循�
 
 fs模块是文件操作封装，它提供了文件的读取、写入、更、除、目录、链接等
 
+## fs.readFlie
 
+fs.readFile(filename,[encoding],[callback(err,data)])
+
+filename，表示要读取的文件 。第二个参数 encoding 是可选的，表示文件的字符编码。callback 是回调函数，用于接收文件的内容。
+
+```
+var fs = require('fs');
+
+fs.readFile('./content.md', function(err, data){
+  if(err){
+    console.log(err);
+  }else {
+    console.log(data);
+  }
+});
+
+```
+
+## fs.readFileSync
+
+fs.readFileSync(filename, [encoding])是 fs.readFile 同步的版本。
+
+```
+var data = fs.readFileSync('./content.dm', 'utf-8');
+```
+
+## writeFile()
+
+fs.writeFile(filename, data,[encoding], [callback(err)])
+
+第一个参数是要写入的文件名, 第二个参数是需要写入的数据, 这两个是必选参数 , 第三个参数是编码, 默认是utf8, 第四个参数是回调函数.
+
+```
+var fs = require('fs');
+var data = "The is write file."
+fs.writeFile('./abcd.md', data, function(err){
+  if(err){
+    console.log(err);
+  }
+});
+
+```
+
+## exists
+
+exists方法用来判断给定路径是否存在，然后不管结果如何，都会调用回调函数。
+
+```
+var fs = require('fs');
+var util = require('util');
+
+fs.exists('./node', function(exists){
+  util.debug(exists ? "it's there" : "No dir.")
+})
+
+```
+
+## 创建删除目录
 
